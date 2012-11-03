@@ -1,21 +1,15 @@
 require 'spec_helper'
 
 describe MoviesController do
-  describe 'searching TMDb' do
-    it 'should call the model method that performs TMDb search' do
-      Movie.should_receive(:find_in_tmdb).with('hardware')
-      post :search_tmdb, {:search_terms => 'hardware'}
+  describe 'find similar movies' do
+    it 'should call the model method that performs Movies With Same Director search' do
+      post :same_director, {:director => 'director'}
     end
-    it 'should select the Search Results template for rendering' do
-      Movie.stub(:find_in_tmdb)
-      post :search_tmdb, {:search_terms => 'hardware'}
-      response.should render_template('search_tmdb')
-    end
-    it 'should make the TMDb search results available to that template' do
-      fake_results = [mock('Movie'), mock('Movie')]
-      Movie.stub(:find_in_tmdb).and_return(fake_results)
-      post :search_tmdb, {:search_terms => 'hardware'}
-      assigns(:movies).should == fake_results
-    end
+    
+    it 'should select the Similar Movies template for rendering'
+   
+
+    it 'should make Movies With Same Director search results available to that template' 
+    
   end
 end

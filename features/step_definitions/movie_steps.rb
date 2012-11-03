@@ -146,4 +146,21 @@ Then /^the director of "(.*)" should be "(.*)"/ do |title, director|
   end	
 end
 
+Then /^(?:|I )should be on the Similar Movies page for "([^"]*)"$/ do |title| 
+  id = Movie.find_by_title(title).id
+  director = Movie.find_by_title(title).director
+  director = director.gsub(/\s/,'+')
+  visit path_to('the Similar Movies page', id, director)
+end
   
+Then /^(?:|I )should be on the home page/ do 
+  visit path_to('the RottenPotatoes home page')
+end
+
+Then /^(?:|I )should see "([^"]*)"$/ do |text|
+  if page.respond_to? :should
+    page.should have_content(text)
+  else
+    assert page.has_content?(text)
+  end
+end

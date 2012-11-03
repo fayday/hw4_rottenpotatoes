@@ -10,7 +10,7 @@ module NavigationHelpers
   #
   # step definition in web_steps.rb
   #
-  def path_to(page_name, id='')
+  def path_to(page_name, id='', director='')
 
     case page_name
 
@@ -25,6 +25,9 @@ module NavigationHelpers
 
     when /^the details page/
       "/movies/#{id}"
+ 
+    when /^the Similar Movies page/
+      "/movies/#{id}/same_director?director=#{director}"
  
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
