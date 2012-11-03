@@ -23,7 +23,7 @@ module NavigationHelpers
     when /^the edit page/
       "/movies/#{id}/edit"
 
-    when /^the details page for "(.*)"/
+    when /^the details page/
       "/movies/#{id}"
  
     # Add more mappings here.

@@ -131,4 +131,19 @@ When /^(?:|I )go to the edit page for "([^"]*)"$/ do |title|
   visit path_to('the edit page for', id)
 end
 
+Given /^(?:|I )am on the details page for "([^"]*)"$/ do |title|
+  id = Movie.find_by_title(title).id
+  visit path_to('the details page', id)
+end
+
+Then /^the director of "(.*)" should be "(.*)"/ do |title, director|
+  #regexp = /#{title}.*#{director}/m
+  #assert page.has_xpath?('//*', :text => regexp)
+  if Movie.find_by_title(title).director == director
+    assert true
+  else 
+    assert false
+  end	
+end
+
   
