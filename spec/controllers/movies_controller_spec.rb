@@ -2,14 +2,24 @@ require 'spec_helper'
 
 describe MoviesController do
   describe 'find similar movies' do
+    before :each do
+      @fake = [mock('movie1'), mock('movie2')]
+    end
     it 'should call the model method that performs Movies With Same Director search' do
-      post :same_director, {:director => 'director'}
+      Movie.should_receive(:find_all_by_director).with('director').and_return(@fake)
+      get :same_director, {:movie_id => 1}
     end
     
-    it 'should select the Similar Movies template for rendering'
-   
+    it 'should select the Similar Movies template for rendering' do
+      Movie.stub(:find_all_by_director).and_return(@fake)
+      get :same_director
+      response.should render_template('same_director')
+    end
 
-    it 'should make Movies With Same Director search results available to that template' 
-    
+    it 'should make Movies With Same Director search results available to that template' do
+      Movie.stub(:find_all_by_director).and_return(@fake)
+      get :same_director
+      assigns(:movies).should == @fake
+    end
   end
 end

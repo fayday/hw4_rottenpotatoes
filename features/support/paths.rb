@@ -27,7 +27,7 @@ module NavigationHelpers
       "/movies/#{id}"
  
     when /^the Similar Movies page/
-      "/movies/#{id}/same_director?director=#{director}"
+      "/movies/#{id}/same_director"
  
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

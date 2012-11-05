@@ -158,9 +158,11 @@ Then /^(?:|I )should be on the home page/ do
 end
 
 Then /^(?:|I )should see "([^"]*)"$/ do |text|
-  if page.respond_to? :should
-    page.should have_content(text)
-  else
-    assert page.has_content?(text)
-  end
+ # if page.respond_to? :should
+ #   within(#message)
+  #  page.should have_content(text)
+ # else
+    assert page.all(:css, 'div#notice', :text => text)
+    #assert page.has_content?(text)
+    
 end
