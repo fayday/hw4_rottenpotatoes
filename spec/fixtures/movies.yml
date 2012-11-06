@@ -1,0 +1,6 @@
+exemplary_movie:
+  id: 1
+  title: Exemplary Title
+  rating: PG
+  director: Exemplary Director
+  release_date: 2012-11-01

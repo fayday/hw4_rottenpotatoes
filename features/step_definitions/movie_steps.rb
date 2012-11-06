@@ -80,15 +80,10 @@ Then /^(?:|I )should not see movies with ratings: (.*)/ do |rating_list|
   end
 end
 
-
-Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|
+#\/([^\/]*)\/$/
+Then /^(?:|I )should not see "([^"]*)"$/ do |regexp|
   regexp = /\A#{regexp}/
-
-  if page.respond_to? :should
-    page.should have_no_xpath('//tbody/tr/td', :text => regexp)
-  else
-    assert page.has_no_xpath?('//tbody/tr/td', :text => regexp)
-  end
+  assert page.has_no_xpath?('//tbody/tr/td', :text => regexp)
 end
 
 Then /^(?:|I )should not see any movie$/ do
